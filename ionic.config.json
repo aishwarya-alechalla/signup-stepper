@@ -1,0 +1,7 @@
+{
+  "name": "OTHISIS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

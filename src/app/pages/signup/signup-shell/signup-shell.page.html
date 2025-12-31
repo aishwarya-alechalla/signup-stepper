@@ -1,0 +1,40 @@
+<ion-content class="page">
+
+  <!-- STEPPER -->
+  <div class="stepper">
+    <ng-container *ngFor="let step of steps; let i = index">
+
+      <div class="step-item">
+
+        <!-- CIRCLE -->
+        <div
+          class="circle"
+          [class.completed]="i < currentStepIndex"
+          [class.active]="i === currentStepIndex">
+          <span *ngIf="i < currentStepIndex">✓</span>
+        </div>
+
+        <!-- LABEL -->
+        <div class="label">{{ step.label }}</div>
+      </div>
+
+      <!-- LINE (NOT THROUGH CIRCLE) -->
+      <div
+        *ngIf="i < steps.length - 1"
+        class="line"
+        [class.completed]="i < currentStepIndex">
+      </div>
+
+    </ng-container>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <router-outlet></router-outlet>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <button class="back" (click)="back()">Back</button>
+    <button class="next" (click)="next()">Next</button>
+  </div>
+
+</ion-content>
