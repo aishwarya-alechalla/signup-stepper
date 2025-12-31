@@ -1,47 +1,44 @@
+// src/app/pages/signup/signup-shell/signup-shell.page.ts
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-signup-shell',
   standalone: true,
+  selector: 'app-signup-shell',
   templateUrl: './signup-shell.page.html',
   styleUrls: ['./signup-shell.page.scss'],
-  imports: [
-    CommonModule,
-    IonicModule,
-    RouterModule
-  ]
+  imports: [IonicModule, CommonModule, RouterOutlet],
 })
 export class SignupShellPage {
-
   steps = [
-    { label: 'Welcome', route: 'welcome' },
-    { label: 'About Yourself', route: 'about-yourself' },
-    { label: 'Invite Staff', route: 'invite-staff' },
-    { label: 'Microphone Check', route: 'mic-check' },
-    { label: 'Next Steps', route: 'next-steps' }
+    { path: 'welcome', label: 'Welcome' },
+    { path: 'about-yourself', label: 'About Yourself' },
+    { path: 'invite-staff', label: 'Invite Staff' },
+    { path: 'mic-check', label: 'Microphone Check' },
+    { path: 'next-steps', label: 'Next Steps' },
   ];
 
-  constructor(public router: Router) {}
+  currentIndex = 0;
 
-  get currentStepIndex(): number {
+  constructor(private router: Router) {
     const url = this.router.url;
-    return this.steps.findIndex(s => url.includes(s.route));
+    const idx = this.steps.findIndex((s) => url.includes(s.path));
+    this.currentIndex = idx === -1 ? 0 : idx;
   }
 
   next() {
-    const i = this.currentStepIndex;
-    if (i < this.steps.length - 1) {
-      this.router.navigate(['/signup', this.steps[i + 1].route]);
+    if (this.currentIndex < this.steps.length - 1) {
+      this.currentIndex++;
+      this.router.navigate(['/signup', this.steps[this.currentIndex].path]);
     }
   }
 
   back() {
-    const i = this.currentStepIndex;
-    if (i > 0) {
-      this.router.navigate(['/signup', this.steps[i - 1].route]);
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.router.navigate(['/signup', this.steps[this.currentIndex].path]);
     }
   }
 }

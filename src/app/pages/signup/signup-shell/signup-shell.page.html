@@ -1,40 +1,51 @@
-<ion-content class="page">
-
-  <!-- STEPPER -->
-  <div class="stepper">
-    <ng-container *ngFor="let step of steps; let i = index">
-
-      <div class="step-item">
-
-        <!-- CIRCLE -->
-        <div
-          class="circle"
-          [class.completed]="i < currentStepIndex"
-          [class.active]="i === currentStepIndex">
-          <span *ngIf="i < currentStepIndex">✓</span>
+<!-- src/app/pages/signup/signup-shell/signup-shell.page.html -->
+<ion-content fullscreen class="signup-shell">
+  <div class="mobile-frame">
+    <!-- STEPPER -->
+    <div class="stepper">
+      <ng-container *ngFor="let step of steps; let i = index">
+        <div class="step">
+          <div
+            class="circle"
+            [class.completed]="i < currentIndex"
+            [class.active]="i === currentIndex"
+          >
+            <span *ngIf="i < currentIndex">✓</span>
+          </div>
+          <div class="label">{{ step.label }}</div>
         </div>
 
-        <!-- LABEL -->
-        <div class="label">{{ step.label }}</div>
-      </div>
+        <div
+          class="line"
+          *ngIf="i < steps.length - 1"
+          [class.completed]="i < currentIndex"
+        ></div>
+      </ng-container>
+    </div>
 
-      <!-- LINE (NOT THROUGH CIRCLE) -->
-      <div
-        *ngIf="i < steps.length - 1"
-        class="line"
-        [class.completed]="i < currentStepIndex">
-      </div>
+    <!-- CONTENT -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
 
-    </ng-container>
+    <!-- FOOTER -->
+    <div class="footer">
+      <ion-button
+        fill="clear"
+        color="primary"
+        (click)="back()"
+        [disabled]="currentIndex === 0"
+      >
+        Back
+      </ion-button>
+
+      <ion-button
+        color="primary"
+        (click)="next()"
+        [disabled]="currentIndex === steps.length - 1"
+      >
+        Next
+      </ion-button>
+    </div>
   </div>
-
-  <!-- PAGE CONTENT -->
-  <router-outlet></router-outlet>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <button class="back" (click)="back()">Back</button>
-    <button class="next" (click)="next()">Next</button>
-  </div>
-
 </ion-content>

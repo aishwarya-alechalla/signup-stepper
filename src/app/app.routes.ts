@@ -1,12 +1,17 @@
 import { Routes } from '@angular/router';
-import { SignupShellPage } from './pages/signup/signup-shell/signup-shell.page';
 
 export const routes: Routes = [
-
   {
     path: 'signup',
-    component: SignupShellPage,
+    loadComponent: () =>
+      import('./pages/signup/signup-shell/signup-shell.page')
+        .then(m => m.SignupShellPage),
     children: [
+      {
+        path: '',
+        redirectTo: 'welcome',
+        pathMatch: 'full'
+      },
       {
         path: 'welcome',
         loadComponent: () =>
@@ -36,11 +41,6 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/signup/steps/next-steps/next-steps.component')
             .then(m => m.NextStepsComponent)
-      },
-      {
-        path: '',
-        redirectTo: 'welcome',
-        pathMatch: 'full'
       }
     ]
   },
