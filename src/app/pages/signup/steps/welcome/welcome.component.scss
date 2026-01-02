@@ -1,0 +1,111 @@
+.welcome-container {
+  width: 327px;
+  margin: 0 auto;
+  padding-top: 24px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* LOGO */
+.logo {
+  width: 120px; /* reduced to match Figma */
+  height: auto;
+  margin-bottom: 16px;
+}
+
+/* TEXT */
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 130%;
+  color: #8a8894;
+  margin-bottom: 28px;
+}
+
+.subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: #212121;
+  margin-bottom: 20px;
+}
+
+/* FORM */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+}
+
+/* INPUTS */
+.input {
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #e6e6eb;
+  background: #f8f9fc;
+  font-size: 14px;
+}
+
+.input::placeholder {
+  color: #b6b6c3;
+}
+
+/* MOBILE ROW */
+.mobile-row {
+  display: flex;
+  gap: 8px;
+}
+
+/* FLAG + CODE BOX */
+.country-code {
+  width: 88px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid #e6e6eb;
+  background: #f8f9fc;
+  box-sizing: border-box;
+}
+
+.flag {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+}
+
+.dial-code {
+  font-size: 14px;
+  color: #212121;
+}
+
+/* PHONE INPUT */
+.mobile-input {
+  flex: 1;
+}
+
+/* BUTTON */
+.next-btn {
+  margin-top: 24px;
+  height: 44px;
+  border-radius: 8px;
+  border: none;
+  background-color: #0a3d78;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+}
